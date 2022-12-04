@@ -3,13 +3,21 @@ import Sidebar from '../../components/Sidebar'
 import styled from 'styled-components'
 
 import colors from '../../assets/styles/colors'
+import Post from './Post'
+import Stories from './Stories'
+
+import users from '../../assets/mocks/users'
+import posts from '../../assets/mocks/posts'
+
 
 export default () => {
+
   return (  
     <Container>
       <Sidebar/>
-      <main>
-        <p>BANANA</p>
+      <main className='main'>
+        <Stories users={users}/>
+        {posts.map(({user, image}, index) => <Post user={user} image={image} key={index}/>)}
       </main>
     </Container>
   )
@@ -17,7 +25,7 @@ export default () => {
 
 const Container = styled.div`
   display: flex;
-  height: 100vh;
+  height: fit-content;
   width: 100vw;
 
   .sidebar {
@@ -28,10 +36,14 @@ const Container = styled.div`
     padding: 1rem;
   }
 
-  main {
+  .main {
+    padding: 20px 0;
     width: 100%;
     display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
     background-color: ${colors.primary};
-    justify-content: center;
+    /* justify-content: center; */
   }
 `
