@@ -17,7 +17,7 @@ export default () => {
   return (
     <Div>
       <img className='logo' src={logo} alt="instaclone logo"/>
-      <ul>
+      <ul className='options-list'>
         <li><Option Icon={home} title='Página inicial'/></li>
         <li><Option Icon={search} title='Pesquisa'/></li>
         <li><Option Icon={compass} title='Explorar'/></li>
@@ -31,7 +31,10 @@ export default () => {
 }
 
 const Div = styled.div`
-  width: 18vw;
+  position: fixed;
+  background-color: ${colors.sidebar_bg};
+  width: 16vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   border-right: 1px solid;
@@ -43,8 +46,7 @@ const Div = styled.div`
     max-width: 240px;
     height: auto;
   }
-
-  ul {
+  .options-list {
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
@@ -54,9 +56,10 @@ const Div = styled.div`
     padding: 0;
   }
 
-  li {
+  .options-list > li {
     :last-of-type {
       margin-top: auto;
+      margin-bottom: 20px;
     }
   }
 `
