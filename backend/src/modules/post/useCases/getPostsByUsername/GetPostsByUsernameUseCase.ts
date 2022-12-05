@@ -16,6 +16,9 @@ export class GetPostsByUsernameUseCase {
         const posts = await prisma.post.findMany({
             where: {
                 author_username: username
+            },
+            orderBy: {
+                createdAt: "desc"
             }
         })
 
