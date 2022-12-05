@@ -1,0 +1,46 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator erd {
+    provider = "prisma-erd-generator"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String   @id @default(uuid())
+    email     String   @unique
+    username  String   @unique
+    creaedAt  DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    password  String
+
+    posts Post[]
+
+    followedBy Follows[] @relation("following")
+    following  Follows[] @relation("follower")
+
+    @@map("users")
+}
+
+model Follows {
+    followerUsername  String
+    followingUsername String
+
+    follower  User @relation("follower", fields: [followerUsername], references: [username])
+    following User @relation("following", fields: [followingUsername], references: [username])
+
+    @@id([followerUsername, followingUsername])
+}
+
+model Post {
+    id              Int      @id @default(autoincrement())
+    author          User     @relation(fields: [author_username], references: [username])
+    author_username String
+    media           String
+    createdAt       DateTime @default(now())
+}
