@@ -12,10 +12,7 @@ import Profile from './Profile'
 import useProgressiveImg from '../../hooks/useProgressiveImg'
 
 interface PostProps {
-  user: {
-    name: string,
-    avatar: string
-  },
+  user: string,
   image: string,
 }
 
@@ -25,7 +22,7 @@ export default function Post({user, image}: PostProps) {
   return (
     <Div blur={blur}>
       <div className='post-profile'>
-        <Profile src={user.avatar} userName={user.name} type='POST'/>
+        <Profile src={`https://picsum.photos/seed/${user}/25/1080`} userName={user} type='POST'/>
         <span className='post-options'>...</span>
       </div>
       <div className='post-content'>
@@ -42,6 +39,7 @@ export default function Post({user, image}: PostProps) {
 }
 
 const Div = styled.div<{ blur: boolean }>`
+  /* transition: 1s; */
   display: flex;
   flex-direction: column;
   min-height: 10%;
