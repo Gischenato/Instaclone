@@ -8,13 +8,15 @@ import Stories from './Stories'
 
 import users from '../../assets/mocks/users'
 import { IPost, getAllPosts } from '../../services/api'
+import {posts as postsMocks, getFakePosts} from '../../assets/mocks/posts'
 
 export default () => {
 
-  const [posts, setPosts] = useState<Array<IPost>>([])
+  const [posts, setPosts] = useState<Array<IPost>>(getFakePosts(6))
+  // const [posts, setPosts] = useState<Array<IPost>>([])
 
   useEffect(() => {
-    loadPosts()
+    // loadPosts()
   }, [])
 
   const loadPosts = async () => {
@@ -34,7 +36,6 @@ export default () => {
       <main>
         <Stories users={users}/>
         {posts.map(({author_username, media}, index) => {
-          if (index > 1) return null
           return (
             <Post user={author_username} image={media} key={index}/>
           )
@@ -47,12 +48,12 @@ export default () => {
 const Container = styled.div`
   display: flex;
   height: fit-content;
-  width: 100vw;
+  width: 100%;
 
   > main {
+    display: flex;
     padding: 20px 0;
     width: 100%;
-    display: flex;
     gap: 20px;
     flex-direction: column;
     align-items: center;

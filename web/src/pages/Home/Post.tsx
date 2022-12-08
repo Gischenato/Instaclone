@@ -42,7 +42,6 @@ const Div = styled.div<{ blur: boolean }>`
   /* transition: 1s; */
   display: flex;
   flex-direction: column;
-  min-height: 10%;
   align-items: center;
   justify-content: center;
   width: 30%;

@@ -1,3 +1,5 @@
+import { IPost } from "../../services/api"
+
 const users = [
     {
         name: 'Giovanni',
@@ -13,31 +15,26 @@ const users = [
     },
 ]
 
-const posts = [
+export const posts: Array<IPost> = [
     {
-        user: users[0],
-        image: `https://picsum.photos/seed/${parseInt(Math.random() * 1000+'')}`,
-    },
-    {
-        user: users[1],
-        image: `https://picsum.photos/seed/${parseInt(Math.random() * 1000+'')}`,
-    },
-    {
-        user: users[2],
-        image: `https://picsum.photos/seed/${parseInt(Math.random() * 1000+'')}`,
-    },
-    {
-        user: users[0],
-        image: `https://picsum.photos/seed/${parseInt(Math.random() * 1000+'')}`,
-    },
-    {
-        user: users[0],
-        image: `https://picsum.photos/seed/${parseInt(Math.random() * 1000+'')}`,
-    },
-    {
-        user: users[1],
-        image: `https://picsum.photos/seed/${parseInt(Math.random() * 1000+'')}`,
+        author_username: 'giovanni',
+        createdAt: '2022-01-01T00:00:00.000Z',
+        id: 1,
+        media: 'https://picsum.photos/seed/15',
     },
 ]
 
-export default posts
+export const getFakePosts = (qnt:number): Array<IPost> => {
+    const posts:Array<IPost> = []
+    for(let i = 0; i<qnt; i++){
+        posts.push({
+            author_username: users[Math.floor(Math.random() * users.length)].name,
+            createdAt: new Date().toISOString(),
+            id: i,
+            media: 'https://picsum.photos/seed/'+(i*Math.random()),
+        })
+    }
+    console.log(posts);
+    
+    return posts
+}
