@@ -6,7 +6,7 @@ export class GetAllPostsController {
         const getAllPostsUseCase = new GetAllPostsUseCase()
 
         const result = await getAllPostsUseCase.execute()
-
-        return res.status(201).json(result)
+        res.header("Access-Control-Allow-Origin", "*")
+        return res.status(200).json(result)
     }
 }
